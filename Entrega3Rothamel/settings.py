@@ -54,7 +54,7 @@ ROOT_URLCONF = 'Entrega3Rothamel.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [C:\Users\Usuario\Desktop\curso_python_clases\entregas\EntregaFinalRorhamel\Entrega3Rothamel\templates],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
