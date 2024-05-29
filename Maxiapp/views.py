@@ -8,7 +8,7 @@ def inicio(req):
      return render  (req,"Inicio.html",{})
 
 def cliente(req):
-     cliente=Cliente.objets.all()
+     cliente=Cliente.objects.all()
      return render  (req,"Clientes.html",{"cliente":cliente})
 
 def empleado(req):
@@ -16,6 +16,6 @@ def empleado(req):
      return render  (req,"Empleados.html",{"empleado":empleado})
 
 def proveedor(req):
-     proveedor=Proveedor.objets.all()
+     proveedor=Proveedor.objects.all()
      return render  (req,"Proveedores.html",{"proveedor":proveedor})
 
