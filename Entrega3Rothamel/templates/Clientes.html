@@ -2,8 +2,18 @@
 {%load static%}
 {% block contenidoQueCambia %}
 <!--Aquí va lo que cambia, y lo asociado a está vista :) -->
-<h1>Clientes</h1>
-<p>Aquí encontrará los datos sobre los clientes.</p>
 <h3>en progreso</h3>
+<a href="{% url 'nuevo_cliente' %}">Completar datos del cliente</a>
 
+{% if miFormulario.errors %}
+<p style="color:red;">Están mal los datos, revisar</p>
+{% endif %}
+
+<form action="" method="POST">
+    {% csrf_token %}
+    <table>
+        {{ miFormulario.as_table }}
+    </table>
+    <button type="submit">Enviar</button>
+</form>
 {% endblock %}
