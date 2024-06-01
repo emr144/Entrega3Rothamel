@@ -1,19 +1,23 @@
 from django import forms
+from .models import ProveedorCla, ClienteCla, EmpleadoCla
 
-class FormularioCliente(forms.Form):
-    apellido = forms.CharField(max_length=100)
-    nombre = forms.CharField(max_length=100)
-    email = forms.EmailField()
-    telefono = forms.CharField(max_length=15)
 
-# class FormularioEmpleado(forms.Form):
-#     apellido = forms.CharField(max_length=100)
-#     nombre = forms.CharField(max_length=100)
-#     email = forms.EmailField()
-#     telefono = forms.CharField(max_length=15)
+class ClienteForm(forms.ModelForm):
+     class Meta:
+          model=ClienteCla
+          fields=["nombre","apellido","email","telefono","direccion"]
 
-# class FormularioProveedor(forms.Form):
-#     nombre = forms.CharField(max_length=100)
-#     email = forms.EmailField()
-#     telefono = forms.CharField(max_length=15)
-#     direccion = forms.CharField(widget=forms.Textarea, required=False)
+
+class EmpleadoForm(forms.ModelForm):
+     class Meta:
+          model=EmpleadoCla
+          fields=["nombre","apellido","email","telefono","puesto"]
+
+class ProveedorForm(forms.ModelForm):
+     class Meta:
+          model=ProveedorCla
+          fields=["nombre","email","telefono","rubro","direccion"]
+
+
+    
+    

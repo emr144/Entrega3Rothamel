@@ -1,43 +1,71 @@
 from django.urls import path
-from django.shortcuts import render
-from .models import Cliente, Empleado, Proveedor
+from django.shortcuts import render ,redirect
+from .models import ClienteCla, EmpleadoCla, ProveedorCla
 from django.http import HttpResponse
-from Maxiapp.form import FormularioCliente     #, FormularioEmpleado, FormularioProveedor
+from .form import ClienteForm, EmpleadoForm , ProveedorForm
 
 def inicio(req):
      return render  (req,"Inicio.html",{})
 
 def cliente(req):
-     cliente=Cliente.objects.all()
+     cliente=ClienteCla.objects.all()
      return render  (req,"Clientes.html",{"cliente":cliente})
 
 def empleado(req):
-     empleado=Empleado.objects.all()
+     empleado=EmpleadoCla.objects.all()
      return render  (req,"Empleados.html",{"empleado":empleado})
 
 def proveedor(req):
-     proveedor=Proveedor.objects.all()
+     proveedor=ProveedorCla.objects.all()
      return render  (req,"Proveedores.html",{"proveedor":proveedor})
 
-def formularioCliente(request):
-    if request.method == "POST":
 
-        miFormulario = FormularioCliente(request.POST)
-        if miFormulario.is_valid():
-           
-            informacion = miFormulario.cleaned_data
-            cliente = Cliente(
-                apellido=informacion["apellido"],
-                nombre=informacion["nombre"],
-                email=informacion["email"],
-                telefono=informacion["telefono"]
-            )
-            cliente.save()
-            
+# Formulario Cliente
+def nuevo_cliente(request):
+    if request.method == 'POST':
+        form = ClienteForm(request.POST)
+        if form.is_valid():
+            form.save()
             return redirect('inicio')
     else:
-        
-        miFormulario = FormularioCliente()
-    
-    
-    return render(request, "Maxiapp/formularioCliente.html", {"miFormulario": miFormulario})
+        form = ClienteForm()
+     
+    return render(request, "formularioCliente.html", {"form": form})
+
+def lista_clientes(request):
+    clientes = ClienteCla.objects.all()  
+    return render(request, 'template_path/lista_clientes.html', {'clientes': clientes})
+
+
+#Formulario Empleado
+def nuevo_empleado(request):
+    if request.method == 'POST':
+        form = EmpleadoForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('inicio')
+    else:
+        form = EmpleadoForm()
+     
+    return render(request, "formularioEmpleado.html", {"form": form})
+
+def lista_empleado(request):
+    empleado = EmpleadoCla.objects.all()  
+    return render(request, 'template_path/lista_empleado.html', {'empleado': empleado})
+
+
+#Formulario Proveedor
+def nuevo_proveedor(request):
+    if request.method == 'POST':
+        form = ProveedorForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('inicio')
+    else:
+        form = ProveedorForm()
+     
+    return render(request, "formularioProveedor.html", {"form": form})
+
+def lista_proveedor(request):
+    proveedor = ProveedorCla.objects.all()  
+    return render(request, 'template_path/lista_clientes.html', {'proveedor': proveedor})

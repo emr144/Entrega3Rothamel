@@ -2,8 +2,35 @@
 {%load static%}
 {% block contenidoQueCambia %}
 <!--Aquí va lo que cambia, y lo asociado a está vista :) -->
-<h1>Empleados</h1>
-<p>Aquí encontrará los datos sobre los empleados.</p>
-<h3>en progreso</h3>
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tu Proyecto</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .btn-custom {
+            background-color: #d3d3d3; /* Gris claro */
+            color: black; /* Letras en negro */
+            border: none;
+        }
+        .btn-custom:hover {
+            background-color: #c0c0c0; /* Gris un poco más oscuro al pasar el mouse */
+        }
+        .button-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 30vh;
+        }
+    </style>
+</head>
+<body>
+    <div class="button-container">
+        <a href="{% url 'nuevo_empleado' %}" class="btn btn-custom">Completar datos del empleado</a>
+    </div>
+</body>
+</html>
 {% endblock %}

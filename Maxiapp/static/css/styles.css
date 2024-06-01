@@ -3151,7 +3151,9 @@ textarea.form-control-lg {
   --bs-btn-font-size: 0.875rem;
   --bs-btn-border-radius: 0.25rem;
 }
-
+.custom-btn {
+  color: black !important;
+}
 .fade {
   transition: opacity 0.15s linear;
 }
