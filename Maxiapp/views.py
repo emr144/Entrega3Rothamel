@@ -2,10 +2,14 @@ from django.urls import path
 from django.shortcuts import render ,redirect
 from .models import ClienteCla, EmpleadoCla, ProveedorCla
 from django.http import HttpResponse
-from .form import ClienteForm, EmpleadoForm , ProveedorForm
+from .form import ClienteForm, EmpleadoForm , ProveedorForm, Buscar
+
+
 
 def inicio(req):
-     return render  (req,"Inicio.html",{})
+     form = Buscar() 
+     return render  (req,"Inicio.html",{'form': form})
+
 
 def cliente(req):
      cliente=ClienteCla.objects.all()
@@ -34,7 +38,7 @@ def nuevo_cliente(request):
 
 def lista_clientes(request):
     clientes = ClienteCla.objects.all()  
-    return render(request, 'template_path/lista_clientes.html', {'clientes': clientes})
+    return render(request, 'listaClientes.html', {'clientes': clientes})
 
 
 #Formulario Empleado
@@ -51,7 +55,7 @@ def nuevo_empleado(request):
 
 def lista_empleado(request):
     empleado = EmpleadoCla.objects.all()  
-    return render(request, 'template_path/lista_empleado.html', {'empleado': empleado})
+    return render(request, 'listaEmpleados.html', {'empleado': empleado})
 
 
 #Formulario Proveedor
@@ -68,4 +72,22 @@ def nuevo_proveedor(request):
 
 def lista_proveedor(request):
     proveedor = ProveedorCla.objects.all()  
-    return render(request, 'template_path/lista_clientes.html', {'proveedor': proveedor})
+    return render(request, 'listaProveedores.html', {'proveedor': proveedor})
+
+
+def buscar(request):
+    form = Buscar(request.GET)
+    results = []
+    if form.is_valid():
+        query = form.cleaned_data['query']
+        category = form.cleaned_data['category']
+        if category == 'clientes':
+            results = ClienteCla.objects.filter(nombre__icontains=query)
+        elif category == 'empleados':
+            results = EmpleadoCla.objects.filter(nombre__icontains=query)
+        elif category == 'proveedores':
+            results = ProveedorCla.objects.filter(nombre__icontains=query)
+    return render(request, 'formularioBusqueda.html', {'form': form, 'results': results})
+
+
+

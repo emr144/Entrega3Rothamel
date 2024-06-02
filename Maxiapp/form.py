@@ -18,6 +18,12 @@ class ProveedorForm(forms.ModelForm):
           model=ProveedorCla
           fields=["nombre","email","telefono","rubro","direccion"]
 
-
+class Buscar(forms.Form):
+    query = forms.CharField(label='Buscar', max_length=100)
+    category = forms.ChoiceField(choices=[
+        ('clientes', 'Clientes'),
+        ('empleados', 'Empleados'),
+        ('proveedores', 'Proveedores')
+    ])
     
     

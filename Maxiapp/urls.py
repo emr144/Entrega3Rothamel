@@ -1,7 +1,7 @@
 from django.urls import path
 from Maxiapp.views import inicio,cliente, empleado, proveedor
 from Maxiapp.views import nuevo_cliente, nuevo_empleado, nuevo_proveedor
-from Maxiapp.views import lista_clientes, lista_empleado, lista_proveedor
+from Maxiapp.views import lista_clientes, lista_empleado, lista_proveedor, buscar
 
 
 
@@ -15,6 +15,7 @@ urlpatterns = [
     path('empleado/nuevo/', nuevo_empleado, name='nuevo_empleado'),
     path('proveedor/nuevo/', nuevo_proveedor, name='nuevo_proveedor'),
     path('cliente/lista/', lista_clientes, name='lista_clientes'),
-    path('cliente/lista/', lista_empleado, name='lista_empleado'),
-    path('cliente/lista/', lista_proveedor, name='lista_proveedor')
+    path('empleado/lista/', lista_empleado, name='lista_empleado'),
+    path('proveedor/lista/', lista_proveedor, name='lista_proveedor'),
+    path('buscar/', buscar, name='buscar'),
 ]
